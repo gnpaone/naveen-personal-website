@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: gnpaone.github.io
-Token: 05dc9e3f7cca31dd930d325e4d72f7e38fb0c5e4a4eec44496140b5eef22ae57
