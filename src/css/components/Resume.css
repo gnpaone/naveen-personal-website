@@ -392,7 +392,6 @@ div.resume-container {
         margin-left: (_size(element-margin) * -0.5);
         padding: 0;
         table-layout: fixed;
-          width: calc(100% + #{($_size(element-margin) * 0.5)});
 
         li {
           display: table-cell;
@@ -405,7 +404,6 @@ div.resume-container {
 
         &.small {
           margin-left: (_size(element-margin) * -0.25);
-          width: calc(100% + #{($_size(element-margin) * 0.25)});
 
           li {
             padding: 0 0 0 (_size(element-margin) * 0.25);
