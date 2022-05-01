@@ -2,6 +2,7 @@
   "name": "my-personal-website",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://gnpaone.github.io",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
@@ -38,9 +39,9 @@
   },
   "scripts": {
     "frontend": "node index.js",
-    "start:dev": "concurrently \"npm start\" \"npm run frontend\"",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "concurrently \"npm run start:dev\" \"npm run frontend\"",
+    "start:dev": "react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
@@ -63,7 +64,7 @@
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
-    "gh-pages": "^2.2.0",
+    "gh-pages": "^3.2.3",
     "nodemon": "^1.18.7"
   }
 }
