@@ -41,7 +41,7 @@
     "frontend": "node index.js",
     "start": "concurrently \"npm run start:dev\" \"npm run frontend\"",
     "start:dev": "react-scripts start",
-    "build": "concurrently \"react-scripts build --prefix client\" \"npm run frontend\"",
+    "build": "react-scripts build --prefix client",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
