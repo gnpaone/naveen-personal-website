@@ -1,4 +1,4 @@
-name: CI notify
+name: Start server
 
 # Only trigger, when the build workflow succeeded
 on:
