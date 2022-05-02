@@ -1,0 +1,35 @@
+name: CI notify
+
+# Only trigger, when the build workflow succeeded
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Build & deploy"]
+    types:
+      - completed
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "server"
+  server:
+    # The type of runner that the job will run on
+    name: Start
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+    
+    - name: Install NPM packages
+      run: npm ci
+      
+    - name: Update Browser list
+      run: npx browserslist --update-db
+    
+    - name: Start server
+      run: npm run backend
