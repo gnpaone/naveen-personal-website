@@ -14,7 +14,7 @@ jobs:
   server:
     # The type of runner that the job will run on
     name: Start
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     
     steps:
     - name: Checkout code
@@ -33,3 +33,6 @@ jobs:
     
     - name: Build server
       run: npm run build --if-present
+      
+    - name: Configure server
+      run: pm2 start --name=ChatbotApp index.js
