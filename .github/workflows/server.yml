@@ -32,4 +32,4 @@ jobs:
       run: npx browserslist --update-db
       
     - name: Configure server
-      run: pm2 start --name=ChatbotApp index.js
+      run: npx pm2 start --name=ChatbotApp index.js
