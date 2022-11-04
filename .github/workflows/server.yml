@@ -30,9 +30,6 @@ jobs:
       
     - name: Update Browser list
       run: npx browserslist --update-db
-    
-    - name: Build server
-      run: npm run build --if-present
       
     - name: Configure server
       run: pm2 start --name=ChatbotApp index.js
