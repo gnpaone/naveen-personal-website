@@ -14,7 +14,7 @@ jobs:
   server:
     # The type of runner that the job will run on
     name: Start
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     
     steps:
     - name: Checkout code
@@ -31,5 +31,5 @@ jobs:
     - name: Update Browser list
       run: npx browserslist --update-db
     
-    - name: Start server
-      run: npm run backend
+    - name: Build server
+      run: npm run build --if-present
