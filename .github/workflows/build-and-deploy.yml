@@ -28,15 +28,26 @@ jobs:
       
     - name: Update Browser list
       run: npx browserslist --update-db
+
+    - name: Run ESLint and save output
+      id: eslint
+      run: |
+        npx eslint . --format json > eslint-output.json || true
+        echo "::set-output name=lint_output::$(cat eslint-output.json)"
+        echo "::set-output name=warning_count::$(jq '.[] | select(.errorCount > 0) | .warningCount' eslint-output.json | add)"
+
+    - name: Display warning count
+      run: |
+        echo "Total lint warnings: ${{ steps.eslint.outputs.warning_count }}"
     
     - name: Build project
       run: CI=false npm run build
 
-    - name: Upload production-ready build files
-      uses: actions/upload-artifact@v2
-      with:
-        name: production-files
-        path: ./build
+    # - name: Upload production-ready build files
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: production-files
+    #     path: ./build
   
   deploy:
     name: Deploy
