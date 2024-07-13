@@ -2,7 +2,7 @@ div.overlay {
   position: fixed;
   top: 0;
   right: 0;
-  height: 370px;
+  height: 480px;
   padding-right: 1px;
   z-index: 10;
   width: 122px;
@@ -34,6 +34,10 @@ ul.navbar-list {
 
 ul.navbar-list a {
   display: none; /*<- else the links would still be clickable even with hidden overlay*/
+}
+
+li.navbar-item {
+  padding-left: 0em;
 }
 
 div.overlay.expanded ul.navbar-list a {
@@ -74,7 +78,7 @@ div.burger-button {
 
 div.overlay.expanded {
   z-index: 10;
-  transform: translateY(215px);
+  transform: translateY(110px);
   opacity: 1;
   background-color: #0a192f; /*#12082e-old*/
   transition:

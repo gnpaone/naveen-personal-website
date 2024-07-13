@@ -197,10 +197,10 @@ class Chatbot extends Component {
       return (
         <div
           style={{
-            borderRadius: "15px",
+            borderRadius: "15px 15px 0 0",
             opacity: 0.8,
-            paddingTop: "24px",
-            paddingBottom: "4px",
+            paddingTop: "20px",
+            paddingBottom: "8px",
             backgroundColor: "#000f23",
             height: 500,
             width: 450,
@@ -254,10 +254,10 @@ class Chatbot extends Component {
       return (
         <div
           style={{
-            borderRadius: "15px",
+            borderRadius: "15px 15px 0 0",
             opacity: 0.8,
-            paddingTop: "20px",
-            paddingBottom: "8px",
+            paddingTop: "14px",
+            paddingBottom: "14px",
             backgroundColor: "#000f23",
             width: 450,
             position: "fixed",

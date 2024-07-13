@@ -1,20 +1,22 @@
-import React from 'react';
+import React from "react";
 // import { Link } from 'react-router-dom';
-import '../css/components/Resume.css';
+import "../css/components/Resume.css";
 // import Main from '../layouts/Main';
 // import styled from 'styled-components';
-import CategoryButton from './Resume/Skills/CategoryButton';
+// import CategoryButton from "./Resume/Skills/CategoryButton";
 
-import Education from './Resume/Education';
-import Experience from './Resume/Experience';
-import Skills from './Resume/Skills';
-import Courses from './Resume/Courses';
-import References from './Resume/References';
+import Education from "./Resume/Education";
+// import Experience from "./Resume/Experience";
+import Publications from "./Resume/Publications";
+import Skills from "./Resume/Skills";
+// import Courses from "./Resume/Courses";
+import References from "./Resume/References";
 
-import courses from '../data/resume/courses';
-import degrees from '../data/resume/degrees';
-import positions from '../data/resume/positions';
-import { skills, categories } from '../data/resume/skills';
+// import courses from "../data/resume/courses";
+import degrees from "../data/resume/degrees";
+// import positions from "../data/resume/positions";
+import articles from "../data/resume/articles";
+import { skills, categories } from "../data/resume/skills";
 
 /* const Styles = styled.div`
   ol {
@@ -678,38 +680,34 @@ import { skills, categories } from '../data/resume/skills';
   }
 ` */
 
-const sections = [
-  'Education',
-  'Experience',
-  'Skills',
-  'Courses',
-  'References',
-];
+const sections = ["Education", "Publications", "Skills", "References"];
 
 const Resume = () => {
-  return(
+  return (
     <section id="resume" className="resume-section">
       <div className="resume-container container to-slide up">
         <div>
           <div className="resume-text">
-            <h3>Resume </h3>
+            <h3>Resume</h3>
             <div class="tab-link">
               <a href={`#${"Education".toLowerCase()}`}>Education</a>
-              <a href={`#${"Experience".toLowerCase()}`}>Experience</a>
+              {/* <a href={`#${"Experience".toLowerCase()}`}>Experience</a> */}
+              <a href={`#${"Publications".toLowerCase()}`}>Publications</a>
               <a href={`#${"Skills".toLowerCase()}`}>Skills</a>
-              <a href={`#${"Courses".toLowerCase()}`}>Courses</a>
+              {/* <a href={`#${"Courses".toLowerCase()}`}>Courses</a> */}
               <a href={`#${"References".toLowerCase()}`}>References</a>
             </div>
           </div>
           <Education data={degrees} />
-          <Experience data={positions} />
+          {/* <Experience data={positions} /> */}
+          <Publications data={articles} />
           <Skills skills={skills} categories={categories} />
-          <Courses data={courses} />
+          {/* <Courses data={courses} /> */}
           <References />
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default Resume;

@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
 /* Keys match keys returned by the github api. Fields without keys are
  * mostly jokes. To see everything returned by the github api, run:
@@ -6,46 +6,42 @@ import dayjs from 'dayjs';
  */
 const data = [
   {
-    label: 'Stars this repository has on github',
-    key: 'stargazers_count',
-    link: 'https://github.com/gnpaone/my-personal-website/stargazers',
+    label: "Stars this repository has on github",
+    key: "stargazers_count",
+    link: "https://github.com/gnpaone/naveen-personal-website/stargazers",
   },
   {
-    label: 'Number of people watching this repository',
-    key: 'subscribers_count',
-    link: 'https://github.com/gnpaone/my-personal-website/stargazers',
+    label: "Number of people watching this repository",
+    key: "subscribers_count",
+    link: "https://github.com/gnpaone/naveen-personal-website/stargazers",
   },
   {
-    label: 'Number of forks',
-    key: 'forks',
-    link: 'https://github.com/gnpaone/my-personal-website/network',
+    label: "Number of forks",
+    key: "forks",
+    link: "https://github.com/gnpaone/naveen-personal-website/network",
   },
   {
-    label: 'Number of spoons',
-    value: '0',
+    label: "Number of linter warnings",
+    value: "0", // enforced via github workflow
   },
   {
-    label: 'Number of linter warnings',
-    value: '0', // enforced via github workflow
+    label: "Open github issues",
+    key: "open_issues_count",
+    link: "https://github.com/gnpaone/naveen-personal-website/issues",
   },
   {
-    label: 'Open github issues',
-    key: 'open_issues_count',
-    link: 'https://github.com/gnpaone/my-personal-website/issues',
-  },
-  {
-    label: 'Last updated at',
-    key: 'pushed_at',
-    link: 'https://github.com/gnpaone/my-personal-website/commits',
-    format: (x) => dayjs(x).format('MMMM DD, YYYY'),
+    label: "Last updated at",
+    key: "pushed_at",
+    link: "https://github.com/gnpaone/naveen-personal-website/commits",
+    format: (x) => dayjs(x).format("MMMM DD, YYYY"),
   },
   {
     // TODO update this with a pre-commit hook
     /* find . | grep ".js" | grep -vE ".min.js|node_modules|.git|.json" |
     xargs -I file cat file | wc -l */
-    label: 'Lines of Javascript powering this website',
-    value: '50740',
-    link: 'https://github.com/gnpaone/my-personal-website/graphs/contributors',
+    label: "Lines of Javascript powering this website",
+    value: "50740",
+    link: "https://github.com/gnpaone/naveen-personal-website/graphs/contributors",
   },
 ];
 

@@ -1,15 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const Job = ({ data }) => (
   <article className="jobs-container">
     <header>
-      <h4><a href={data.link}>{data.company}</a> - {data.position}</h4>
-      <p className="daterange" style={{fontSize:"19px"}}> {data.daterange}</p>
+      <h4>
+        <a class="mail-link-new" href={data.link}>
+          {data.company}
+        </a>{" "}
+        - {data.position}
+      </h4>
+      <code className="daterange" style={{ fontSize: "17px" }}>
+        {" "}
+        {data.daterange}
+      </code>
     </header>
     <ul className="points">
       {data.points.map((point) => (
-        <li key={point}><p style={{fontSize:"17px"}}>{point}</p></li>
+        <li key={point}>
+          <p style={{ fontSize: "15px" }}>{point}</p>
+        </li>
       ))}
     </ul>
   </article>
