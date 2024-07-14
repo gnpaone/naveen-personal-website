@@ -1,24 +1,28 @@
 import React, { useState, useCallback, useEffect } from "react";
-
 import Table from "./Table";
 import initialData from "../../data/stats/site";
 
 const Stats = () => {
   const [data, setResponseData] = useState(initialData);
   // TODO think about persisting this somewhere
+  
   const fetchData = useCallback(async () => {
     // request must be authenticated if private
     const res = await fetch(
       "https://api.github.com/repos/gnpaone/naveen-personal-website",
     );
     const resData = await res.json();
+
+    const linesOfJs = await fetch("https://ghloc.vercel.app/api/gnpaone/naveen-personal-website/badge?filter=.js");
+    const linesOfJsData = await linesOfJs.json();
+    
     setResponseData(
       initialData.map((field) => ({
         ...field,
         // update value if value was returned by call to github
-        value: Object.keys(resData).includes(field.key)
-          ? resData[field.key]
-          : field.value,
+        value: field.label === "Lines of Javascript powering this website" 
+          ? linesOfJsData.message 
+          : (Object.keys(resData).includes(field.key) ? resData[field.key] : field.value),
       })),
     );
   }, []);

@@ -40,7 +40,7 @@ const data = [
     /* find . | grep ".js" | grep -vE ".min.js|node_modules|.git|.json" |
     xargs -I file cat file | wc -l */
     label: "Lines of Javascript powering this website",
-    value: "50740",
+    value: "0",  // default value, will be updated dynamically
     link: "https://github.com/gnpaone/naveen-personal-website/graphs/contributors",
   },
 ];
