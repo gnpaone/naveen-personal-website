@@ -14,6 +14,7 @@ jobs:
     permissions:
       contents: read # for actions/checkout to fetch code
       statuses: write # for super-linter/super-linter/slim to mark status of each linter run
+      
     name: Lint Code Base
     runs-on: ubuntu-latest
     steps:
@@ -22,6 +23,7 @@ jobs:
         with:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
+          
       - name: Lint Code Base
         uses: super-linter/super-linter/slim@v6.7.0
         env:
@@ -30,56 +32,57 @@ jobs:
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: true
+          
       - name: Upload lint logs
         uses: actions/upload-artifact@v2
         with:
           name: lint-files
           path: ./super-linter-output
 
-  # build:
-  #   name: Build
-  #   runs-on: ubuntu-latest
+  build:
+    name: Build
+    runs-on: ubuntu-latest
     
-  #   steps:
-  #   - name: Checkout code
-  #     uses: actions/checkout@v2
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
     
-  #   - name: Install Node.js
-  #     uses: actions/setup-node@v1
-  #     with:
-  #       node-version: 16.x
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
     
-  #   - name: Install NPM packages
-  #     run: npm ci
+    - name: Install NPM packages
+      run: npm ci
       
-  #   - name: Update Browser list
-  #     run: npx browserslist --update-db
+    - name: Update Browser list
+      run: npx browserslist --update-db
     
-  #   - name: Build project
-  #     run: CI=false npm run build
+    - name: Build project
+      run: CI=false npm run build
 
-  #   - name: Upload production-ready build files
-  #     uses: actions/upload-artifact@v2
-  #     with:
-  #       name: production-files
-  #       path: ./build
+    - name: Upload production-ready build files
+      uses: actions/upload-artifact@v2
+      with:
+        name: production-files
+        path: ./build
   
-  # deploy:
-  #   name: Deploy
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   if: github.ref == 'refs/heads/master'
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
     
-  #   steps:
-  #   - name: Download artifact
-  #     uses: actions/download-artifact@v2
-  #     with:
-  #       name: production-files
-  #       path: ./build
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: production-files
+        path: ./build
 
-  #   - name: Deploy to gh-pages
-  #     uses: peaceiris/actions-gh-pages@v3
-  #     with:
-  #       deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-  #       external_repository: gnpaone/gnpaone.github.io
-  #       publish_dir: ./build
+    - name: Deploy to gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        external_repository: gnpaone/gnpaone.github.io
+        publish_dir: ./build
