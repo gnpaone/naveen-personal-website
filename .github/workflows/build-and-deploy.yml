@@ -30,11 +30,11 @@ jobs:
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: true
-      - name: Upload production-ready build files
+      - name: Upload lint logs
         uses: actions/upload-artifact@v2
         with:
-          name: production-files
-          path: .
+          name: lint-files
+          path: ./super-linter-output
 
   # build:
   #   name: Build
