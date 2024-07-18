@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://gnpaone.github.io",
-  "proxy": "http://localhost:5000",
+  "engines": {
+    "node": "18.x"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
