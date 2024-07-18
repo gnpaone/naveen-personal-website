@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://gnpaone.github.io",
+  "proxy": "https://chatbot-server-indol.vercel.app",
   "engines": {
     "node": "18.x"
   },
