@@ -58,6 +58,7 @@ span.heavier {
   height: auto !important;
   width: 40px !important;
   position: initial;
+  cursor: pointer;
 }
 
 @media (min-width: 1170px) {
