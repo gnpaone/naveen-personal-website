@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import Cookies from "universal-cookie";
 import { v4 as uuid } from "uuid";
 import Message from "./Message";
@@ -76,17 +75,24 @@ class Chatbot extends Component {
       messages: [...this.state.messages, says]
     });
 
-    const res = await axios.post("/api/df_text_query", {
-      text,
-      userID: cookies.get("userID")
+    const response = await fetch("http://localhost:5000/api/df_text_query", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        text,
+        userID: cookies.get("userID")
+      })
     });
 
+    const res = await response.json();
  
-    if (res.data.action === 'input.whoAreYou' && res.data.allRequiredParamsPresent) {
-      this.setState({botName: res.data.parameters.fields.name.stringValue});
+    if (res.action === 'input.whoAreYou' && res.allRequiredParamsPresent) {
+      this.setState({botName: res.parameters.fields.name.stringValue});
     }
 
-    res.data.fulfillmentMessages.forEach(message => {
+    res.fulfillmentMessages.forEach(message => {
       says = {
         speaks: "bot",
         message
@@ -102,20 +108,28 @@ class Chatbot extends Component {
 
   // Function to send event query to server
   async df_event_query(event) {
-    const res = await axios.post("/api/df_event_query", {
-      event,
-      userID: cookies.get("userID")
+    const response = await fetch("http://localhost:5000/api/df_event_query", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        event,
+        userID: cookies.get("userID")
+      })
     });
+
+    const res = await response.json();
     // Iterating over all the responeses in the the request response
     // because the chatbot can have multiple responses for a single phrase
-    for (let msg of res.data.fulfillmentMessages) {
+    for (let msg of res.fulfillmentMessages) {
       let says = {
         speaks: "bot",
         message: msg
       };
       this.setState({ messages: [...this.state.messages, says] });
     }
-    // this.sound.play();
+    this.sound.play();
   }
 
   //Helper functions
