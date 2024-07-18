@@ -108,7 +108,7 @@ class Chatbot extends Component {
 
   // Function to send event query to server
   async df_event_query(event) {
-    const response = await fetch("https://chatbot-server-indol.vercel.app/df_event_query", {
+    const response = await fetch("https://chatbot-server-indol.vercel.app/api/df_event_query", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
