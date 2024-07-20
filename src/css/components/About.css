@@ -67,6 +67,17 @@ span.heavier {
   }
 }
 
+.modal-image {
+  width: auto;
+  height: 80vh;
+}
+
+@media (max-width: 768px) {
+  .modal-image {
+    height: 80vw;
+  }
+}
+
 .propic-element .vertical-timeline-element-content {
   display: none;
 }
