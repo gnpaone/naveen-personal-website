@@ -69,7 +69,7 @@ const About = (props) => {
                 <img
                   src={proPic}
                   alt="Full profile"
-                  style={{ width: "auto", height: "80vh" }}
+                  className="modal-image"
                 />
               </div>
             </Modal>
