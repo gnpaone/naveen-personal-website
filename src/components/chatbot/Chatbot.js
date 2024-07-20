@@ -278,8 +278,6 @@ class Chatbot extends Component {
                 width: "100dvw",
                 position: "fixed",
                 bottom: 0,
-                right: "2px",
-                left: "2px",
                 zIndex: 1000
               }}
             >
