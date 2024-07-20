@@ -11,7 +11,6 @@ import Stats from "./components/Stats.js";
 import Contacts from "./components/Contacts.js";
 import Chatbot from "./components/chatbot/Chatbot.js";
 import NotFound from "./components/NotFound";
-import MediaQuery from "react-responsive";
 
 const { PUBLIC_URL } = process.env;
 const Notfound = () => (
@@ -616,9 +615,7 @@ export default class App extends React.Component {
           <Resume />
           <Stats />
           <Contacts contacts={this.socialMedia} />
-          <MediaQuery minWidth={600}>
-            <Chatbot />
-          </MediaQuery>
+          <Chatbot />
         </div>
       );
     }
