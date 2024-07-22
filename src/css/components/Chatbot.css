@@ -42,6 +42,54 @@
     text-align: start;
 }
 
+.info {
+    cursor: pointer;
+}
+
+.info svg {
+    padding-bottom: 10px;
+}
+
+.info:hover {
+    color: #61d3a3;
+    transform:scale(1.3,1.3);
+    -webkit-transform:scale(1.3,1.3);
+    -moz-transform:scale(1.3,1.3);
+}
+
+.hover-box {
+    display: none;
+    flex-direction: column;
+    background-color: #000f23;
+    border: 0.5px solid #61d3a3;
+    padding: 10px;
+    z-index: 1001;
+    opacity: 0.8;
+    align-items: center;
+    text-align: center;
+    color: #d0efff;
+    position: absolute;
+}
+
+.hover-box.open{
+    bottom: 520px;
+    right: 0;
+}
+
+.hover-box.min{
+    bottom: 60px;
+    right: 0;
+}
+
+.chatbubble-arrow {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #61d3a3;
+    transform: translateY(200%);
+}
+
 .bot {
     border-top-left-radius: 0; 
     background-color: #f1f0f0;
