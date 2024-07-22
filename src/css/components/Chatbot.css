@@ -68,7 +68,7 @@
     align-items: center;
     text-align: center;
     color: #d0efff;
-    position: absolute;
+    position: fixed;
 }
 
 .hover-box.open{
