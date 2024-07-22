@@ -17,11 +17,15 @@ class Chatbot extends Component {
 
   constructor(props) {
     super(props);
+    this.infoRefs = {};
+    this.hoverBoxRef = React.createRef();
     this.state = {
       messages: [],
       showBot: false,
       welcomeSent: false,
-      botName: 'Chatbot'
+      botName: 'Chatbot',
+      hoverBoxClass: 'min',
+      isHovered: false
     };
     
     this.sound = new Audio(messageSound);
@@ -33,6 +37,8 @@ class Chatbot extends Component {
 
     //Binding event listeners
     this.toggleBot = this.toggleBot.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
     this._handleInputKeyPress = this._handleInputKeyPress.bind(this);
   }
 
@@ -50,17 +56,37 @@ class Chatbot extends Component {
       this.df_event_query("WELCOME_TO_SITE");
       this.setState({ welcomeSent: true, showBot: false }); /* showBot: true <-initial code */
     }
+    this.updateHoverBoxPosition();
+    window.addEventListener('resize', this.updateHoverBoxPosition);
   }
 
   // Scroll to latest message on updation of state
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     if(this.state.showBot) {
       this.messagesEnd.scrollIntoView({ behaviour: "smooth" });
     }
     if (this.chatInput) {
       this.chatInput.focus();
     }
+    if (prevState.hoverBoxClass !== this.state.hoverBoxClass || prevState.isHovered !== this.state.isHovered) {
+      this.updateHoverBoxPosition();
+    }
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateHoverBoxPosition);
+  }
+
+  updateHoverBoxPosition = () => {
+    const infoElement = this.infoRefs[this.state.hoverBoxClass]?.current;
+    const hoverBoxElement = this.hoverBoxRef.current;
+    if (infoElement && hoverBoxElement) {
+      const infoRect = infoElement.getBoundingClientRect();
+      const hoverBoxRect = hoverBoxElement.getBoundingClientRect();
+      const hoverBoxLeft = infoRect.left + infoRect.width * 5 / 8 - hoverBoxRect.width / 2;
+      hoverBoxElement.style.left = `${hoverBoxLeft}px`;
+    }
+  };
 
   //Function to send text query to server
   async df_text_query(text) {
@@ -195,6 +221,17 @@ class Chatbot extends Component {
 
   toggleBot() {
     this.setState({ showBot: !this.state.showBot });
+    this.setState(prevState => ({
+      hoverBoxClass: prevState.hoverBoxClass === 'min' ? 'open' : 'min'
+    }));
+  }
+
+  handleMouseOver() {
+    this.setState({ isHovered: !this.state.isHovered });
+  }
+
+  handleMouseOut() {
+    this.setState({ isHovered: !this.state.isHovered });
   }
 
   // EVENT LISTENERS
@@ -212,6 +249,10 @@ class Chatbot extends Component {
       return (
         <>
           <MediaQuery minWidth={600}>
+            <div id="hoverBox" style={{ display: this.state.isHovered ? 'flex' : 'none' }} className={`chatbubble hover-box ${this.state.hoverBoxClass}`} ref={this.hoverBoxRef}>
+              <span style={{ paddingTop: "11px", color: "#doefff" }}>You can try asking him questions about me, my hobbies, my skills etc. You can also ask the bot for its name and have small talk to it. I'll add more training phrases whenever I find some time. Don't forget to say bye before leaving ;D</span>
+              <div className="chatbubble-arrow"></div>
+            </div>
             <div
               style={{
                 borderRadius: "15px 15px 0 0",
@@ -229,7 +270,7 @@ class Chatbot extends Component {
             >
               <nav>
                 <div id="chatwindow-nav" className="nav-wrapper">
-                  <span>{ botName }</span>
+                  <span ref={this.infoRefs.open = React.createRef()}>{ botName }<span className="info" onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}><svg width="21px" height="21px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 11V13C5.5 16.3137 8.18629 19 11.5 19H13.5C16.8137 19 19.5 16.3137 19.5 13V11C19.5 7.68629 16.8137 5 13.5 5H11.5C8.18629 5 5.5 7.68629 5.5 11Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.5 12V16" stroke="#000000" stroke-width="1.5" stroke-linecap="round"/><path d="M12.5 9.5C12.2243 9.5 12 9.2757 12 9C12 8.7243 12.2243 8.5 12.5 8.5C12.7757 8.5 13 8.7243 13 9C13 9.2757 12.7757 9.5 12.5 9.5Z" fill="#000000"/><path d="M12.5 8C13.0523 8 13.5 8.44772 13.5 9C13.5 9.55228 13.0523 10 12.5 10C11.9477 10 11.5 9.55228 11.5 9C11.5 8.44772 11.9477 8 12.5 8Z" fill="#000000"/></svg></span></span>
                   <span className="close" onClick={this.toggleBot}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg></span>
                 </div>
               </nav>
@@ -327,6 +368,10 @@ class Chatbot extends Component {
       return (
         <>
           <MediaQuery minWidth={600}>
+            <div id="hoverBox" style={{ display: this.state.isHovered ? 'flex' : 'none' }} className={`chatbubble hover-box ${this.state.hoverBoxClass}`} ref={this.hoverBoxRef}>
+              <span style={{ paddingTop: "11px", color: "#doefff" }}>You can try asking him questions about me, my hobbies, my skills etc. You can also ask the bot for its name and have small talk to it. I'll add more training phrases whenever I find some time. Don't forget to say bye before leaving ;D</span>
+              <div className="chatbubble-arrow"></div>
+            </div>
             <div
               style={{
                 borderRadius: "15px 15px 0 0",
@@ -343,7 +388,7 @@ class Chatbot extends Component {
             >
               <nav>
                 <div id="chatwindow-nav" className="nav-wrapper">
-                  <span>{ botName }</span>
+                  <span ref={this.infoRefs.min = React.createRef()}>{ botName }<span className="info" onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}><svg width="21px" height="21px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 11V13C5.5 16.3137 8.18629 19 11.5 19H13.5C16.8137 19 19.5 16.3137 19.5 13V11C19.5 7.68629 16.8137 5 13.5 5H11.5C8.18629 5 5.5 7.68629 5.5 11Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.5 12V16" stroke="#000000" stroke-width="1.5" stroke-linecap="round"/><path d="M12.5 9.5C12.2243 9.5 12 9.2757 12 9C12 8.7243 12.2243 8.5 12.5 8.5C12.7757 8.5 13 8.7243 13 9C13 9.2757 12.7757 9.5 12.5 9.5Z" fill="#000000"/><path d="M12.5 8C13.0523 8 13.5 8.44772 13.5 9C13.5 9.55228 13.0523 10 12.5 10C11.9477 10 11.5 9.55228 11.5 9C11.5 8.44772 11.9477 8 12.5 8Z" fill="#000000"/></svg></span></span>
                   <span className="close" onClick={this.toggleBot}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></svg></span>
                 </div>
               </nav>
