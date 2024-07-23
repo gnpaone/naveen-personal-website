@@ -61,7 +61,7 @@
     display: none;
     flex-direction: column;
     background-color: #000f23;
-    border: 0.5px solid #61d3a3;
+    border-bottom: 2.5px solid #61d3a3;
     padding: 10px;
     z-index: 1001;
     opacity: 0.8;
