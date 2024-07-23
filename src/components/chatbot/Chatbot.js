@@ -250,7 +250,7 @@ class Chatbot extends Component {
         <>
           <MediaQuery minWidth={600}>
             <div id="hoverBox" style={{ display: this.state.isHovered ? 'flex' : 'none' }} className={`chatbubble hover-box ${this.state.hoverBoxClass}`} ref={this.hoverBoxRef}>
-              <span style={{ paddingTop: "11px", color: "#doefff" }}>You can try asking him questions about me, my hobbies, my skills etc. You can also ask the bot for its name and have small talk to it. I'll add more training phrases whenever I find some time. Don't forget to say bye before leaving ;D</span>
+              <span style={{ paddingTop: "11px", color: "#doefff" }}>You can try asking him questions about me, my hobbies, my skills etc. You can also ask the bot for its name and have small talk with it. I'll add more training phrases whenever I find some time. Don't forget to say bye before leaving ;D</span>
               <div className="chatbubble-arrow"></div>
             </div>
             <div
@@ -369,7 +369,7 @@ class Chatbot extends Component {
         <>
           <MediaQuery minWidth={600}>
             <div id="hoverBox" style={{ display: this.state.isHovered ? 'flex' : 'none' }} className={`chatbubble hover-box ${this.state.hoverBoxClass}`} ref={this.hoverBoxRef}>
-              <span style={{ paddingTop: "11px", color: "#doefff" }}>You can try asking him questions about me, my hobbies, my skills etc. You can also ask the bot for its name and have small talk to it. I'll add more training phrases whenever I find some time. Don't forget to say bye before leaving ;D</span>
+              <span style={{ paddingTop: "11px", color: "#doefff" }}>You can try asking him questions about me, my hobbies, my skills etc. You can also ask the bot for its name and have small talk with it. I'll add more training phrases whenever I find some time. Don't forget to say bye before leaving ;D</span>
               <div className="chatbubble-arrow"></div>
             </div>
             <div
