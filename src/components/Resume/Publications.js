@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import Article from "./Publications/Article";
 
-const Publications = ({ data }) => (
+const Publications = ({ data = [] }) => (
   <div className="publications">
     <div className="link-to" id="publications" />
     <div className="title">
@@ -25,10 +25,6 @@ Publications.propTypes = {
       points: PropTypes.arrayOf(PropTypes.string),
     }),
   ),
-};
-
-Publications.defaultProps = {
-  data: [],
 };
 
 export default Publications;

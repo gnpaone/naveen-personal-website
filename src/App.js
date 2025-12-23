@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./css/App.css";
 import Loader from "./components/Loader.js";
 import Navbar from "./components/Navbar.js";
@@ -9,16 +9,16 @@ import Projects from "./components/Projects.js";
 import Resume from "./components/Resume.js";
 import Stats from "./components/Stats.js";
 import Contacts from "./components/Contacts.js";
-import Chatbot from "./components/chatbot/Chatbot.js";
+import Chatbot from "./components/Chatbot/Chatbot.js";
 import NotFound from "./components/NotFound";
 
 const { PUBLIC_URL } = process.env;
 const Notfound = () => (
   <BrowserRouter basename={PUBLIC_URL}>
-    <Switch>
-      <Route exact path="/" component={Loader} />
-      <Route component={NotFound} status={404} />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<Loader />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   </BrowserRouter>
 );
 
@@ -159,7 +159,7 @@ export default class App extends React.Component {
     },
     {
       name: 'LinkedIn',
-      icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>,
+      icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" /></svg>,
       link: 'https://www.linkedin.com/in/gnpaone'
     },
     {
@@ -512,8 +512,16 @@ export default class App extends React.Component {
   };
 
   handleScroll = (evt) => {
-    this.updateScroll();
-    this.updateSection();
+    let scrollTop;
+    if (window.pageYOffset !== undefined) scrollTop = window.pageYOffset;
+    else
+      scrollTop = (
+        document.documentElement ||
+        document.body.parentNode ||
+        document.body
+      ).scrollTop;
+    this.updateScroll(scrollTop);
+    this.updateSection(scrollTop);
     this.slideInVisibleElements();
   };
 
@@ -537,7 +545,7 @@ export default class App extends React.Component {
     if (
       ((window.innerHeight || document.documentElement.clientHeight) -
         bounding.top) /
-        100 >=
+      100 >=
       2
     ) {
       return true;
@@ -546,23 +554,14 @@ export default class App extends React.Component {
     }
   };
 
-  updateScroll = () => {
-    var offset;
-    if (window.pageYOffset !== undefined) offset = window.pageYOffset;
-    else
-      offset = (
-        document.documentElement ||
-        document.body.parentNode ||
-        document.body
-      ).scrollTop;
-
-    this.setState({ currentScroll: offset });
+  updateScroll = (scrollTop) => {
+    this.setState({ currentScroll: scrollTop });
   };
 
-  updateSection = () => {
+  updateSection = (scrollTop) => {
     var sections = Array.from(document.getElementsByTagName("section")).filter(
       (x) => {
-        return x.offsetTop - this.state.currentScroll <= 1;
+        return x.offsetTop - scrollTop <= 20;
       },
     );
     var closest = sections[sections.length - 1];
