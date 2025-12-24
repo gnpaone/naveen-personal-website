@@ -21,8 +21,6 @@ class GifThumbnails extends React.Component {
     }
 
     render() {
-
-        const img = this.static_img;
         let classes = "project-thumbnail gif-to-animate";
         return (
             <div className={classes} onMouseEnter={this.animateGif} onMouseLeave={this.backToStatic} ref={this.ref}>

@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import '../../css/components/Button.css';
 // import styled from 'styled-components';
 import PropTypes from 'prop-types';

@@ -5,7 +5,7 @@
   "homepage": "https://gnpaone.github.io",
   "proxy": "https://chatbot-server-indol.vercel.app",
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
