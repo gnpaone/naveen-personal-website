@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import scrollToElement from 'scroll-to-element';
 import '../css/components/Navbar.css';
 
@@ -7,19 +8,19 @@ const NavItems = props => {
     const click = props.clickHandler;
     const currentSection = props.currentSection;
     const navItems = props.items.map(item => {
-        return(
+        return (
             <li className="navbar-item" key={item.name}>
                 <a
-                    href={"#"+item.name} 
-                    onClick={click}
+                    href={"#" + item.name}
+                    onClick={(e) => click(e, "#" + item.name)}
                     title={"Navigate to " + item.name}
-                    className={"navbar-item navbar-item-dimensions" + ( item.name === currentSection ? " active" : "" )}>
-                        {item.icon}
+                    className={"navbar-item navbar-item-dimensions" + (item.name === currentSection ? " active" : "")}>
+                    {item.icon}
                 </a>
             </li>
         );
     });
- 
+
     return (
         <nav className="navbar">
             {navItems}
@@ -27,8 +28,19 @@ const NavItems = props => {
     );
 }
 
+NavItems.propTypes = {
+    items: PropTypes.array,
+    clickHandler: PropTypes.func,
+    currentSection: PropTypes.string
+};
 
-export default class Navbar extends React.Component{
+
+export default class Navbar extends React.Component {
+    static propTypes = {
+        items: PropTypes.array,
+        currentSection: PropTypes.string
+    }
+
     constructor(props) {
         super(props);
 
@@ -39,14 +51,13 @@ export default class Navbar extends React.Component{
 
     navbarMenuClick = () => {
         var newState = (this.state.isExpanded ? false : true);
-        this.setState({isExpanded : newState});
+        this.setState({ isExpanded: newState });
         document.getElementById('navbar-list').classList.toggle('fade-in-down');
     }
 
-    navbarLinkClink = (e) => {
+    navbarLinkClink = (e, targetHash) => {
         e.preventDefault();
-        var target = e.target.hash;
-        scrollToElement(target, {
+        scrollToElement(targetHash, {
             ease: 'inOutQuad',
             duration: 400
         })
@@ -55,14 +66,14 @@ export default class Navbar extends React.Component{
 
     render() {
         const { items, currentSection } = this.props;
-        return(
+        return (
             <div className="top">
                 <div className={"overlay" + (this.state.isExpanded ? " expanded" : "")}>
                     <ul className="navbar-list" id="navbar-list">
                         <NavItems items={items} clickHandler={this.navbarLinkClink} currentSection={currentSection} />
                     </ul>
                 </div>
-                <div className={"burger-button" + (this.state.isExpanded? " expanded" : "")} onClick={this.navbarMenuClick}>
+                <div className={"burger-button" + (this.state.isExpanded ? " expanded" : "")} onClick={this.navbarMenuClick}>
                     <span className="burger-line"></span>
                     <span className="burger-line"></span>
                     <span className="burger-line"></span>

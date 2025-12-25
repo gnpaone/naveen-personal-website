@@ -3,25 +3,23 @@ import { useMediaQuery } from "react-responsive";
 
 const Age = () => {
   const [age, setAge] = useState();
-
   const matchSmallScreen = useMediaQuery({ maxWidth: 768 });
 
-  const tick = () => {
+  useEffect(() => {
     const divisor = 1000 * 60 * 60 * 24 * 365.2421897; // ms in an average year
     const birthTime = new Date("2003-02-26T15:00:00");
-    {
-      matchSmallScreen
-        ? setAge(((Date.now() - birthTime) / divisor).toFixed(7))
-        : setAge(((Date.now() - birthTime) / divisor).toFixed(11));
-    }
-  };
 
-  useEffect(() => {
-    const timer = setInterval(() => tick(), 25);
-    return () => {
-      clearInterval(timer);
+    const tick = () => {
+      const precision = matchSmallScreen ? 7 : 11;
+      setAge(((Date.now() - birthTime) / divisor).toFixed(precision));
     };
-  }, []);
+
+    tick();
+    const timer = setInterval(tick, 25);
+
+    return () => clearInterval(timer);
+  }, [matchSmallScreen]);
+
   return <>{age}</>;
 };
 
@@ -40,7 +38,7 @@ const data = [
   {
     key: "location",
     label: "Current city",
-    value: "Chennai, IN",
+    value: "Gwalior, IN",
   },
 ];
 

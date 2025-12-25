@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SkillBar = ({ data, categories }) => {
+const SkillBar = ({ data, categories = [] }) => {
   const { category, competency, title } = data;
 
   // TODO: Consider averaging colors
@@ -35,10 +35,6 @@ SkillBar.propTypes = {
     name: PropTypes.string,
     color: PropTypes.string,
   })),
-};
-
-SkillBar.defaultProps = {
-  categories: [],
 };
 
 export default SkillBar;

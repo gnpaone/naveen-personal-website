@@ -1,10 +1,11 @@
 const express = require("express");
+// const path = require("path");
 const bodyParser = require("body-parser");
-const path = require("path");
+
 const cors = require("cors");
-const config = require("./config/keys");
 
 const app = express();
+require("./config/keys");
 const PORT = process.env.PORT || 5000;
 
 //Routes

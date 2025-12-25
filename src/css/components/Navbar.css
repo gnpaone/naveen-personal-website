@@ -33,7 +33,8 @@ ul.navbar-list {
 }
 
 ul.navbar-list a {
-  display: none; /*<- else the links would still be clickable even with hidden overlay*/
+  display: none;
+  /*<- else the links would still be clickable even with hidden overlay*/
 }
 
 li.navbar-item {
@@ -47,14 +48,17 @@ div.overlay.expanded ul.navbar-list a {
   box-shadow: none;
   color: #61d3a3;
   padding: 20px;
-  text-align: center; /*<- it's default is left if you remove this line*/
+  text-align: center;
+  /*<- it's default is left if you remove this line*/
   font-family: "Consolas", "Menlo", "Droid Sans Mono", monospace;
   width: 100%;
 }
 
-div.overlay.expanded ul.navbar-list a:hover {
-  color: #d0efff;
-  transform: translateY(-5px);
+@media (hover: hover) {
+  div.overlay.expanded ul.navbar-list a:hover {
+    color: #d0efff;
+    transform: translateY(-5px);
+  }
 }
 
 div.overlay.expanded ul.navbar-list a.active {
@@ -80,7 +84,8 @@ div.overlay.expanded {
   z-index: 10;
   transform: translateY(110px);
   opacity: 1;
-  background-color: #0a192f; /*#12082e-old*/
+  background-color: #0a192f;
+  /*#12082e-old*/
   transition:
     transform 700ms cubic-bezier(0.77, 0, 0.175, 1),
     background-color 700ms ease,

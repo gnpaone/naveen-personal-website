@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TableRow = ({
-  label, link, value, format,
+  label, link, value, format = (x) => x,
 }) => (
   <tr>
     <td width="70%">{label}</td>
-    <td>{link ? <a class="mail-link-new" href={link}>{format(value)}</a> : format(value)}</td>
+    <td>{link ? <a className="mail-link-new" href={link}>{format(value)}</a> : format(value)}</td>
   </tr>
 );
 
@@ -19,12 +19,6 @@ TableRow.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-};
-
-TableRow.defaultProps = {
-  format: (x) => x,
-  link: null,
-  value: null,
 };
 
 export default TableRow;

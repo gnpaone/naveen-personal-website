@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import proPic from "../media/download.png";
+import bigProPic from "../media/actualme.png";
+import smallProPic from "../media/me.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Pagination, Parallax } from "swiper/modules";
 import Modal from "react-modal";
@@ -36,14 +38,18 @@ const customStyles = {
 
 const About = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   const openModal = () => {
+    setImgLoaded(false);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const [smallImgLoaded, setSmallImgLoaded] = useState(false);
 
   return (
     <section id="about" className="about-section">
@@ -55,7 +61,19 @@ const About = (props) => {
               iconClassName="propic-icon"
               iconOnClick={openModal}
               icon={
-                <img className="propic" alt="Naveen profile" src={proPic} />
+                <div className="small-loader-container">
+                  <img
+                    className={`propic ${smallImgLoaded ? "loaded" : "loading"}`}
+                    alt="Naveen profile"
+                    src={smallProPic}
+                    onLoad={() => setSmallImgLoaded(true)}
+                  />
+                  {!smallImgLoaded && (
+                    <div className="image-loader small-loader">
+                      <div className="loader-spinner small-spinner"></div>
+                    </div>
+                  )}
+                </div>
               }
               className="propic-element"
             />
@@ -65,12 +83,20 @@ const About = (props) => {
               style={customStyles}
               ariaHideApp={false}
             >
-              <div>
-                <img
-                  src={proPic}
-                  alt="Full profile"
-                  className="modal-image"
-                />
+              <div className="image-loader-container">
+                {isModalOpen && (
+                  <img
+                    src={bigProPic}
+                    alt="Naveen profile"
+                    className={`modal-image ${imgLoaded ? "loaded" : "loading"}`}
+                    onLoad={() => setImgLoaded(true)}
+                  />
+                )}
+                {!imgLoaded && isModalOpen && (
+                  <div className="image-loader">
+                    <div className="loader-spinner"></div>
+                  </div>
+                )}
               </div>
             </Modal>
             {props.list.map((element) => {
@@ -106,7 +132,7 @@ const About = (props) => {
                       className="mySwiper"
                     >
                       {element.markdown.map((content, index) => (
-                        <SwiperSlide>
+                        <SwiperSlide key={index}>
                           <code
                             className="vertical-timeline-element-description"
                             dangerouslySetInnerHTML={{
@@ -135,3 +161,15 @@ const About = (props) => {
 };
 
 export default About;
+
+About.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    icon: PropTypes.element.isRequired,
+    markdown: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string)
+    ]).isRequired
+  })).isRequired
+};
