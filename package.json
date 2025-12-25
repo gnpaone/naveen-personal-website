@@ -73,6 +73,19 @@
       "last 1 safari version"
     ]
   },
+  "overrides": {
+    "dialogflow-fulfillment": {
+      "actions-on-google": "$actions-on-google"
+    },
+    "react-vertical-timeline-component": {
+      "@babel/preset-es2015": {
+        "@babel/plugin-transform-instanceof": {
+          "@babel/core": "^7.0.0"
+        },
+        "@babel/core": "^7.0.0"
+      }
+    }
+  },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "concurrently": "^9.2.1",
