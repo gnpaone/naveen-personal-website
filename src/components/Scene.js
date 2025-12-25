@@ -526,7 +526,7 @@ export default class Scene extends React.Component {
         });
     }
 
-    resizeHandler = (e) => {
+    resizeHandler = () => {
         var width = this.canvas.offsetWidth;
         var height = this.canvas.container.offsetHeight;
         this.canvas.height = this.canvas.offsetHeight;
