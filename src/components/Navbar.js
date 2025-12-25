@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import scrollToElement from 'scroll-to-element';
 import '../css/components/Navbar.css';
 
@@ -27,8 +28,19 @@ const NavItems = props => {
     );
 }
 
+NavItems.propTypes = {
+    items: PropTypes.array,
+    clickHandler: PropTypes.func,
+    currentSection: PropTypes.string
+};
+
 
 export default class Navbar extends React.Component {
+    static propTypes = {
+        items: PropTypes.array,
+        currentSection: PropTypes.string
+    }
+
     constructor(props) {
         super(props);
 

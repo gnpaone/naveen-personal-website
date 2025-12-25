@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -131,7 +132,7 @@ const About = (props) => {
                       className="mySwiper"
                     >
                       {element.markdown.map((content, index) => (
-                        <SwiperSlide>
+                        <SwiperSlide key={index}>
                           <code
                             className="vertical-timeline-element-description"
                             dangerouslySetInnerHTML={{
@@ -160,3 +161,15 @@ const About = (props) => {
 };
 
 export default About;
+
+About.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    icon: PropTypes.element.isRequired,
+    markdown: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string)
+    ]).isRequired
+  })).isRequired
+};

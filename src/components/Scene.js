@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 export default class Scene extends React.Component {
     constructor(props) {
@@ -249,7 +250,7 @@ export default class Scene extends React.Component {
                 const cosU2 = Math.cos(u / 2);
                 const sinU2 = Math.sin(u / 2);
                 const sinV = Math.sin(v);
-                const cosV = Math.cos(v);
+                // const cosV = Math.cos(v);
                 const sin2V = Math.sin(2 * v);
 
                 const temp = (r + cosU2 * sinV - sinU2 * sin2V / 2);
@@ -416,7 +417,9 @@ export default class Scene extends React.Component {
         this.canvas.addEventListener("click", this.canvasClickHandler)
         this.mouse = new THREE.Vector2(-100, -100);
         this.clock = new THREE.Clock();
-        this.props.progressCallback(100);
+        if (this.props.progressCallback) {
+            this.props.progressCallback(100);
+        }
         this.currHovered = [];
         this.prevHovered = [];
         this.start();
@@ -605,3 +608,7 @@ export default class Scene extends React.Component {
         return null;
     }
 }
+
+Scene.propTypes = {
+    progressCallback: PropTypes.func
+};

@@ -1,7 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../css/components/Projects.css';
 
 class GifThumbnails extends React.Component {
+    static propTypes = {
+        img: PropTypes.array,
+        gif: PropTypes.string
+    }
+
     constructor(props) {
         super(props);
 
@@ -32,6 +38,11 @@ class GifThumbnails extends React.Component {
 }
 
 class Thumbnails extends React.Component {
+    static propTypes = {
+        imgs: PropTypes.array,
+        optClasses: PropTypes.string
+    }
+
     constructor(props) {
         super(props);
 
@@ -44,28 +55,28 @@ class Thumbnails extends React.Component {
             optClasses: optClasses
         }
     }
- 
-    _nextSlide = button => { 
+
+    _nextSlide = button => {
         var next = (this.state.curr + 1 >= this.state.len) ? 0 : this.state.curr + 1;
-        this.setState( { curr: next },
+        this.setState({ curr: next },
             () => {
                 this.changeSlide(button);
             });
     }
 
     _prevSlide = button => {
-        var prev = this.state.curr - 1 < 0 ? this.state.len -1 : this.state.curr - 1;
-        this.setState( { curr: prev },
+        var prev = this.state.curr - 1 < 0 ? this.state.len - 1 : this.state.curr - 1;
+        this.setState({ curr: prev },
             () => {
                 this.changeSlide(button);
-            } ); 
+            });
     }
 
     onButtonClick = e => {
         var button = e.target;
 
         //the event might be triggered by the button children as well
-        if(button.classList.contains('next') || button.classList.contains('next-button')) {
+        if (button.classList.contains('next') || button.classList.contains('next-button')) {
             this._nextSlide(button);
         } else {
             this._prevSlide(button);
@@ -73,21 +84,21 @@ class Thumbnails extends React.Component {
     }
 
     changeSlide = button => {
-        var siblings = Array.from( (button.classList.contains('next') ? button.parentElement.parentElement.children : button.parentElement.children) );
+        var siblings = Array.from((button.classList.contains('next') ? button.parentElement.parentElement.children : button.parentElement.children));
         var dir = (button.classList.contains('next') || button.classList.contains('next-button')) ? 'right' : 'left';
         var toRemove = siblings.find(el => {
             return el.tagName !== "DIV" && !el.classList.contains('hidden');
         });
-        if(toRemove !== undefined) {
+        if (toRemove !== undefined) {
             toRemove.classList.remove('fade-in-left');
             toRemove.classList.remove('fade-in-right');
             toRemove.classList.add('hidden');
             var toSlide = siblings.find(el => {
-                return el.classList.contains('image-slide-'+this.state.curr);
+                return el.classList.contains('image-slide-' + this.state.curr);
             });
-            if(toSlide !== undefined) {
+            if (toSlide !== undefined) {
                 toSlide.classList.remove('hidden');
-                toSlide.classList.add('fade-in-'+dir);
+                toSlide.classList.add('fade-in-' + dir);
             }
 
         }
@@ -97,7 +108,7 @@ class Thumbnails extends React.Component {
 
         const imgs = this.props.imgs;
         let className = "project-thumbnail";
-        if(this.state.len > 1) {
+        if (this.state.len > 1) {
             return (
                 <div className={className}>
                     {imgs}
@@ -127,18 +138,18 @@ const Projects = (props) => {
     const projects = props.list.map(p => {
         var idx = 0;
         const imgs = p.image.map(img => {
-            return(
-                <img key={img} className={"image-slide-"+idx + ((idx++ > 0) ? " hidden" : "")} src={img} alt={"Preview for project " + p.title}/>
+            return (
+                <img key={img} className={"image-slide-" + idx + ((idx++ > 0) ? " hidden" : "")} src={img} alt={"Preview for project " + p.title} />
             );
         });
         return (
             <div className={"project to-slide " + ((i++ % 2 === 0) ? "left" : "right")} key={p.title}>
                 <div className="project-info">
                     {
-                        p.hasOwnProperty("gif") ?   <GifThumbnails img={imgs} gif={p.gif}/> : <Thumbnails imgs={imgs}/>
+                        Object.prototype.hasOwnProperty.call(p, "gif") ? <GifThumbnails img={imgs} gif={p.gif} /> : <Thumbnails imgs={imgs} />
                     }
                     <div className="project-text-wrapper">
-                    <h4 className="project-title">{p.title}</h4>
+                        <h4 className="project-title">{p.title}</h4>
                         <p className="project-description">{p.desc}</p>
                         <div className="project-tech">
                             {p.tech.map(t => {
@@ -152,7 +163,7 @@ const Projects = (props) => {
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         )
     });
     return (
@@ -169,3 +180,7 @@ const Projects = (props) => {
 }
 
 export default Projects;
+
+Projects.propTypes = {
+    list: PropTypes.array
+};

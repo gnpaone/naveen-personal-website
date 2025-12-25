@@ -5,7 +5,7 @@ const Job = ({ data }) => (
   <article className="jobs-container">
     <header>
       <h4>
-        <a class="mail-link-new" href={data.link}>
+        <a className="mail-link-new" href={data.link}>
           {data.company}
         </a>{" "}
         - {data.position}

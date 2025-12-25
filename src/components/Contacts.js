@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import PropTypes from 'prop-types';
 // import EmailLink from './Contact/EmailLink';
 // import ContactIcons from './Contact/ContactIcons';
 import "../css/components/Contacts.css";
@@ -130,6 +131,10 @@ const ContactLinks = (props) => {
 };
 
 export default class Contacts extends React.Component {
+  static propTypes = {
+    contacts: PropTypes.array
+  }
+
   constructor(props) {
     super(props);
     this.nameId = "name";

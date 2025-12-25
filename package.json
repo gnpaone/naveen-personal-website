@@ -28,6 +28,7 @@
     "http-proxy-middleware": "^3.0.5",
     "ityped": "^1.0.3",
     "pm2": "^6.0.14",
+    "prop-types": "^15.8.1",
     "pts": "^0.12.9",
     "raw.macro": "^0.7.0",
     "react": "^19.2.3",

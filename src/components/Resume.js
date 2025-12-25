@@ -680,7 +680,7 @@ import { skills, categories } from "../data/resume/skills";
   }
 ` */
 
-const sections = ["Education", "Publications", "Skills", "References"];
+// const sections = ["Education", "Publications", "Skills", "References"];
 
 const Resume = () => {
   return (
@@ -689,7 +689,7 @@ const Resume = () => {
         <div>
           <div className="resume-text">
             <h3>Resume</h3>
-            <div class="tab-link">
+            <div className="tab-link">
               <a href={`#${"Education".toLowerCase()}`}>Education</a>
               {/* <a href={`#${"Experience".toLowerCase()}`}>Experience</a> */}
               <a href={`#${"Publications".toLowerCase()}`}>Publications</a>

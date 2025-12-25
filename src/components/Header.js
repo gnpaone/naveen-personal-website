@@ -1,8 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Scene from './Scene.js';
 import '../css/components/Header.css';
 
 export default class Header extends React.Component {
+    static propTypes = {
+        progressCallback: PropTypes.func
+    }
+
     constructor(props) {
         super(props);
 
@@ -12,7 +17,7 @@ export default class Header extends React.Component {
     }
 
     slideOut = () => {
-        this.setState( { active : false } );
+        this.setState({ active: false });
     }
 
     progressCallback = (amount) => {
@@ -28,12 +33,12 @@ export default class Header extends React.Component {
                             Hello!
                         </h1>
                         <h2 id="welcome-name" className="welcome-name">
-                            <span className="letter">I</span><span className="letter">'</span><span className="letter">m</span><span className="space"> </span><span className="letter">N</span><span className="letter">a</span><span className="letter">v</span><span className="letter">e</span><span className="letter">e</span><span className="letter">n</span><span className="space"> </span><span className="letter">P</span><span className="letter">r</span><span className="letter">a</span><span className="letter">s</span><span className="letter">h</span><span className="letter">a</span><span className="letter">n</span><span className="letter">t</span><span className="letter">h</span><span className="letter">.</span>
+                            <span className="letter">I</span><span className="letter">&apos;</span><span className="letter">m</span><span className="space"> </span><span className="letter">N</span><span className="letter">a</span><span className="letter">v</span><span className="letter">e</span><span className="letter">e</span><span className="letter">n</span><span className="space"> </span><span className="letter">P</span><span className="letter">r</span><span className="letter">a</span><span className="letter">s</span><span className="letter">h</span><span className="letter">a</span><span className="letter">n</span><span className="letter">t</span><span className="letter">h</span><span className="letter">.</span>
                         </h2>
                         <p id="welcome-info" className="welcome-info">Computer Engineer and Web Developer.</p>
                     </div>
                 </div>
-                <Scene progressCallback={this.progressCallback}/>
+                <Scene progressCallback={this.progressCallback} />
             </section>
         )
     };

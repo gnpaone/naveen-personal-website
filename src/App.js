@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./css/App.css";
 import Loader from "./components/Loader.js";
 import Navbar from "./components/Navbar.js";
@@ -10,17 +10,17 @@ import Resume from "./components/Resume.js";
 import Stats from "./components/Stats.js";
 import Contacts from "./components/Contacts.js";
 import Chatbot from "./components/Chatbot/Chatbot.js";
-import NotFound from "./components/NotFound";
+// import NotFound from "./components/NotFound";
 
-const { PUBLIC_URL } = process.env;
-const Notfound = () => (
-  <BrowserRouter basename={PUBLIC_URL}>
-    <Routes>
-      <Route path="/" element={<Loader />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  </BrowserRouter>
-);
+// const { PUBLIC_URL } = process.env;
+// const Notfound = () => (
+//   <BrowserRouter basename={PUBLIC_URL}>
+//     <Routes>
+//       <Route path="/" element={<Loader />} />
+//       <Route path="*" element={<NotFound />} />
+//     </Routes>
+//   </BrowserRouter>
+// );
 
 export default class App extends React.Component {
   constructor(prop) {
@@ -85,7 +85,7 @@ export default class App extends React.Component {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          enable-background="new 0 0 24 24"
+          enableBackground="new 0 0 24 24"
           height="40px"
           viewBox="0 0 24 24"
           width="40px"
@@ -103,7 +103,7 @@ export default class App extends React.Component {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          enable-background="new 0 0 24 24"
+          enableBackground="new 0 0 24 24"
           height="40px"
           viewBox="0 0 24 24"
           width="40px"
@@ -198,8 +198,8 @@ export default class App extends React.Component {
       icon: (
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M22.7099 5.79421C22.4248 5.48211 20.2708 3.17995 17.3257 1.76499C15.8446 1.05339 14.1051 0.537489 12.2683 0.6601C10.5472 0.774986 8.81081 1.44662 7.19057 2.9142C5.13666 2.54192 3.55846 2.92677 2.49394 4.0217C1.40549 5.14125 1.09579 6.77376 1.06276 8.22731C1.02891 9.71678 1.28131 11.2428 1.53146 12.3725C1.65771 12.9426 1.78604 13.4235 1.88331 13.7634C1.93137 13.9314 1.97199 14.0654 2.00124 14.1594C2.08641 19.6088 6.53039 24 12 24C17.2352 24 21.5307 19.9771 21.964 14.8541L22.9867 6.66897C23.0214 6.39118 22.9533 6.06056 22.7099 5.79421ZM4.98994 7.37281C4.23662 8.0105 3.60174 8.76553 3.11347 9.62375C3.07254 9.17353 3.05213 8.71763 3.06224 8.27275C3.09171 6.9763 3.37576 5.98381 3.92793 5.41586C4.41282 4.91712 5.33908 4.51889 7.27096 4.97345C7.60807 5.05277 7.96222 4.95202 8.20711 4.70714C9.61269 3.30155 11.0443 2.74625 12.4015 2.65566C13.7846 2.56334 15.1726 2.94938 16.4596 3.56772C18.5886 4.59057 20.2808 6.17022 20.949 6.84591L20.6506 9.23458C20.1999 8.53573 19.6473 7.91228 19.0101 7.37281C17.1724 5.81727 14.6819 5.00003 12 5.00003C9.31814 5.00003 6.82756 5.81727 4.98994 7.37281ZM20 14C20 14.2189 19.9912 14.4358 19.974 14.6503L19.8864 15.351C19.2444 19.1259 15.9578 22 12 22C7.58172 22 4 18.4183 4 14C4 11.8084 4.87826 10.0877 6.28214 8.89932C7.70188 7.69751 9.7113 7.00003 12 7.00003C14.2887 7.00003 16.2981 7.69751 17.7179 8.89932C19.1217 10.0877 20 11.8084 20 14ZM8.03001 17.2426C7.87428 16.6196 8.36619 16.0003 9.00016 15.9998H15.0002C15.6333 16.0003 16.126 16.6172 15.9703 17.24C15.4525 18.9881 13.7854 20 12.0002 20C10.2834 20 8.46902 18.9986 8.03001 17.2426ZM16.5 12C16.5 12.8285 15.8284 13.5 15 13.5C14.1716 13.5 13.5 12.8285 13.5 12C13.5 11.1716 14.1716 10.5 15 10.5C15.8284 10.5 16.5 11.1716 16.5 12ZM9 13.5C9.82843 13.5 10.5 12.8285 10.5 12C10.5 11.1716 9.82843 10.5 9 10.5C8.17157 10.5 7.5 11.1716 7.5 12C7.5 12.8285 8.17157 13.5 9 13.5Z"
             fill="#61d3a3"
           />
@@ -218,16 +218,16 @@ export default class App extends React.Component {
             d="M5.52786 16.7023C6.6602 18.2608 8.3169 19.3584 10.1936 19.7934C12.0703 20.2284 14.0409 19.9716 15.7434 19.0701C17.446 18.1687 18.766 16.6832 19.4611 14.8865C20.1562 13.0898 20.1796 11.1027 19.527 9.29011C18.8745 7.47756 17.5898 5.96135 15.909 5.02005C14.2282 4.07875 12.2641 3.77558 10.3777 4.16623C8.49129 4.55689 6.80919 5.61514 5.64045 7.14656C4.47171 8.67797 3.89482 10.5797 4.01579 12.5023M4.01579 12.5023L2.51579 11.0023M4.01579 12.5023L5.51579 11.0023"
             fill="none"
             stroke="#61d3a3"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M12 8V12L15 15"
             stroke="#61d3a3"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       ),
@@ -304,9 +304,9 @@ export default class App extends React.Component {
           <path
             d="M12.1296 17.8108L10 21H15L12.8704 17.8108M9.5 9.5C9.5 7.84315 10.3431 6.5 12 6.5M19 9C19 15 12.5 18 12.5 18C12.5 18 6 15 6 9C6 4.5 10 3 12.5 3C15 3 19 4.5 19 9Z"
             stroke="#61d3a3"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             fill="none"
           />
         </svg>
@@ -380,8 +380,8 @@ export default class App extends React.Component {
       icon: (
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M5.63605 5.63605C7.19815 4.07395 9.73081 4.07395 11.2929 5.63605L14.1213 8.46448C15.6834 10.0266 15.6834 12.5592 14.1213 14.1213C13.7308 14.5119 13.0976 14.5119 12.7071 14.1213C12.3166 13.7308 12.3166 13.0976 12.7071 12.7071C13.4882 11.9261 13.4882 10.6597 12.7071 9.87869L9.87869 7.05026C9.09764 6.26922 7.83131 6.26922 7.05026 7.05026C6.26922 7.83131 6.26922 9.09764 7.05026 9.87869L7.75737 10.5858C8.1479 10.9763 8.14789 11.6095 7.75737 12C7.36685 12.3905 6.73368 12.3905 6.34316 12L5.63605 11.2929C4.07395 9.73081 4.07395 7.19815 5.63605 5.63605ZM11.2929 9.8787C11.6834 10.2692 11.6834 10.9024 11.2929 11.2929C10.5119 12.074 10.5119 13.3403 11.2929 14.1213L14.1213 16.9498C14.9024 17.7308 16.1687 17.7308 16.9498 16.9498C17.7308 16.1687 17.7308 14.9024 16.9498 14.1213L16.2427 13.4142C15.8521 13.0237 15.8521 12.3905 16.2427 12C16.6332 11.6095 17.2663 11.6095 17.6569 12L18.364 12.7071C19.9261 14.2692 19.9261 16.8019 18.364 18.364C16.8019 19.9261 14.2692 19.9261 12.7071 18.364L9.8787 15.5356C8.3166 13.9735 8.3166 11.4408 9.8787 9.8787C10.2692 9.48817 10.9024 9.48817 11.2929 9.8787Z"
             fill="#61d3a3"
           />
@@ -511,7 +511,7 @@ export default class App extends React.Component {
     }
   };
 
-  handleScroll = (evt) => {
+  handleScroll = () => {
     let scrollTop;
     if (window.pageYOffset !== undefined) scrollTop = window.pageYOffset;
     else

@@ -7,7 +7,7 @@ import Card from "./Card";
 import messageSound from './../../assets/open-ended.mp3';
 import '../../css/components/Chatbot.css';
 
-// Creating cookie for unique session for DialogFlow
+//Creating cookie for unique session for DialogFlow
 const cookies = new Cookies();
 
 class Chatbot extends Component {
@@ -30,12 +30,12 @@ class Chatbot extends Component {
 
     this.sound = new Audio(messageSound);
 
-    // Setting the cookie using uuid
+    //Setting the cookie using uuid
     if (!cookies.get("userID")) {
       cookies.set("userID", uuid(), { path: "/" });
     }
 
-    // Binding event listeners
+    //Binding event listeners
     this.toggleBot = this.toggleBot.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
     this.handleMouseOut = this.handleMouseOut.bind(this);
@@ -88,7 +88,7 @@ class Chatbot extends Component {
     }
   };
 
-  // Function to send text query to server
+  //Function to send text query to server
   async df_text_query(text) {
     let says = {
       speaks: "me",
@@ -209,7 +209,7 @@ class Chatbot extends Component {
     }
   }
 
-  // Renders all the messages
+  //Renders all the messages
   renderMessages(stateMessages) {
     if (stateMessages) {
       return stateMessages.map((message, i) => {
@@ -250,7 +250,7 @@ class Chatbot extends Component {
         <>
           <MediaQuery minWidth={600}>
             <div id="hoverBox" style={{ display: this.state.isHovered ? 'flex' : 'none' }} className={`chatbubble hover-box ${this.state.hoverBoxClass}`} ref={this.hoverBoxRef}>
-              <span style={{ paddingTop: "11px", color: "#doefff" }}>You can try asking him questions about me, my hobbies, my skills etc. You can also ask the bot for its name and have small talk with it. I'll add more training phrases whenever I find some time. Don't forget to say bye before leaving ;D</span>
+              <span style={{ paddingTop: "11px", color: "#doefff" }}>You can try asking him questions about me, my hobbies, my skills etc. You can also ask the bot for its name and have small talk with it. I&apos;ll add more training phrases whenever I find some time. Don't forget to say bye before leaving ;D</span>
               <div className="chatbubble-arrow"></div>
             </div>
             <div
@@ -270,7 +270,7 @@ class Chatbot extends Component {
             >
               <nav>
                 <div id="chatwindow-nav" className="nav-wrapper">
-                  <span ref={this.infoRefs.open = React.createRef()}>{botName}<span className="info" onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}><svg width="21px" height="21px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 11V13C5.5 16.3137 8.18629 19 11.5 19H13.5C16.8137 19 19.5 16.3137 19.5 13V11C19.5 7.68629 16.8137 5 13.5 5H11.5C8.18629 5 5.5 7.68629 5.5 11Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M12.5 12V16" stroke="#000000" stroke-width="1.5" stroke-linecap="round" /><path d="M12.5 9.5C12.2243 9.5 12 9.2757 12 9C12 8.7243 12.2243 8.5 12.5 8.5C12.7757 8.5 13 8.7243 13 9C13 9.2757 12.7757 9.5 12.5 9.5Z" fill="#000000" /><path d="M12.5 8C13.0523 8 13.5 8.44772 13.5 9C13.5 9.55228 13.0523 10 12.5 10C11.9477 10 11.5 9.55228 11.5 9C11.5 8.44772 11.9477 8 12.5 8Z" fill="#000000" /></svg></span></span>
+                  <span ref={this.infoRefs.open = React.createRef()}>{botName}<span className="info" onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}><svg width="21px" height="21px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M5.5 11V13C5.5 16.3137 8.18629 19 11.5 19H13.5C16.8137 19 19.5 16.3137 19.5 13V11C19.5 7.68629 16.8137 5 13.5 5H11.5C8.18629 5 5.5 7.68629 5.5 11Z" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /><path d="M12.5 12V16" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" /><path d="M12.5 9.5C12.2243 9.5 12 9.2757 12 9C12 8.7243 12.2243 8.5 12.5 8.5C12.7757 8.5 13 8.7243 13 9C13 9.2757 12.7757 9.5 12.5 9.5Z" fill="#000000" /><path d="M12.5 8C13.0523 8 13.5 8.44772 13.5 9C13.5 9.55228 13.0523 10 12.5 10C11.9477 10 11.5 9.55228 11.5 9C11.5 8.44772 11.9477 8 12.5 8Z" fill="#000000" /></svg></span></span>
                   <span className="close" onClick={this.toggleBot}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none" /><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" /></svg></span>
                 </div>
               </nav>
@@ -369,7 +369,7 @@ class Chatbot extends Component {
         <>
           <MediaQuery minWidth={600}>
             <div id="hoverBox" style={{ display: this.state.isHovered ? 'flex' : 'none' }} className={`chatbubble hover-box ${this.state.hoverBoxClass}`} ref={this.hoverBoxRef}>
-              <span style={{ paddingTop: "11px", color: "#doefff" }}>You can try asking him questions about me, my hobbies, my skills etc. You can also ask the bot for its name and have small talk with it. I'll add more training phrases whenever I find some time. Don't forget to say bye before leaving ;D</span>
+              <span style={{ paddingTop: "11px", color: "#doefff" }}>You can try asking him questions about me, my hobbies, my skills etc. You can also ask the bot for its name and have small talk with it. I&apos;ll add more training phrases whenever I find some time. Don't forget to say bye before leaving ;D</span>
               <div className="chatbubble-arrow"></div>
             </div>
             <div
@@ -388,7 +388,7 @@ class Chatbot extends Component {
             >
               <nav>
                 <div id="chatwindow-nav" className="nav-wrapper">
-                  <span ref={this.infoRefs.min = React.createRef()}>{botName}<span className="info" onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}><svg width="21px" height="21px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 11V13C5.5 16.3137 8.18629 19 11.5 19H13.5C16.8137 19 19.5 16.3137 19.5 13V11C19.5 7.68629 16.8137 5 13.5 5H11.5C8.18629 5 5.5 7.68629 5.5 11Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M12.5 12V16" stroke="#000000" stroke-width="1.5" stroke-linecap="round" /><path d="M12.5 9.5C12.2243 9.5 12 9.2757 12 9C12 8.7243 12.2243 8.5 12.5 8.5C12.7757 8.5 13 8.7243 13 9C13 9.2757 12.7757 9.5 12.5 9.5Z" fill="#000000" /><path d="M12.5 8C13.0523 8 13.5 8.44772 13.5 9C13.5 9.55228 13.0523 10 12.5 10C11.9477 10 11.5 9.55228 11.5 9C11.5 8.44772 11.9477 8 12.5 8Z" fill="#000000" /></svg></span></span>
+                  <span ref={this.infoRefs.min = React.createRef()}>{botName}<span className="info" onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}><svg width="21px" height="21px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M5.5 11V13C5.5 16.3137 8.18629 19 11.5 19H13.5C16.8137 19 19.5 16.3137 19.5 13V11C19.5 7.68629 16.8137 5 13.5 5H11.5C8.18629 5 5.5 7.68629 5.5 11Z" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /><path d="M12.5 12V16" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" /><path d="M12.5 9.5C12.2243 9.5 12 9.2757 12 9C12 8.7243 12.2243 8.5 12.5 8.5C12.7757 8.5 13 8.7243 13 9C13 9.2757 12.7757 9.5 12.5 9.5Z" fill="#000000" /><path d="M12.5 8C13.0523 8 13.5 8.44772 13.5 9C13.5 9.55228 13.0523 10 12.5 10C11.9477 10 11.5 9.55228 11.5 9C11.5 8.44772 11.9477 8 12.5 8Z" fill="#000000" /></svg></span></span>
                   <span className="close" onClick={this.toggleBot}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none" /><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" /></svg></span>
                 </div>
               </nav>
